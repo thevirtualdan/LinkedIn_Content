@@ -1,0 +1,22 @@
+# Install and load required packages
+install.packages(c("ggplot2", "tsibble", "fable"))
+library(ggplot2)
+library(tsibble)
+library(fable)
+
+# Create or load your time series data
+# For demonstration purposes, let's create a sample data frame
+time_series_data <- data.frame(
+  Date = seq(as.Date("2022-01-01"), as.Date("2022-12-31"), by = "1 month"),
+  Value = rnorm(12)
+)
+
+# Create a tsibble object
+time_series_tsibble <- as_tsibble(time_series_data, key = "Date")
+
+# Create a time series plot using autoplot
+autoplot(time_series_tsibble) +
+  labs(title = "Time Series Plot in R",
+       y = "Numeric Values",
+       x = "Date") +
+  theme_minimal()
